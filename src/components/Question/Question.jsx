@@ -5,13 +5,15 @@ function Question(props) {
     function getAnswerList() {
         const answerArray = props.answers
         return answerArray.map(answer => {
-            return <div id={answer.id} data-questionid={props.question.id} key={answer.id} onClick={doSomething}>{answer.answerText}</div>
+            return <div 
+                onClick={(e) => props.handleClick(e, props.id, answer.id)} 
+                id={answer.id} 
+                key={answer.id}>
+                    {answer.answerText}
+                </div>
         })
     }
 
-    function doSomething() {
-        console.log("clicked")
-    }
 
     return (
         <section className="question">

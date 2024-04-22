@@ -69,12 +69,22 @@ function App() {
     const questionObject = await res.json()
     return questionObject
   }
-
+  function questionClickHandler(a, b, c) {
+    console.log('a.target:', a.target)
+    console.log('b: ', b)
+    console.log('c: ', c)
+  }
   const questions = 
     <div>
       {questionList.map((question) => {
         {console.log(question)}
-        return <Question key={question.id} question={question.question} answers={question.answerList}/> 
+        return <Question 
+          key={question.id} 
+          id={question.id}
+          question={question.question} 
+          answers={question.answerList}
+          handleClick={questionClickHandler}
+        /> 
       })}
         
 
