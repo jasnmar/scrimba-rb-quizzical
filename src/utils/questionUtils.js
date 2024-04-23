@@ -3,7 +3,7 @@ import { data } from '../data'
 import he from "he"
 const tmp = false
 //Turn this off for prod
-const debug = true
+const debug = false
 
 //I want the shape of the data to be a little different than the
 //way the API returns it, so I'm reshaping it a bit.
