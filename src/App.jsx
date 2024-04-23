@@ -10,7 +10,19 @@ import he from "he"
 
 
 function App() {
-  const [questionList, setQuestionList] = useState(customizeResponse())
+  const [questionList, setQuestionList] = useState()
+
+  useEffect(() => {
+    console.log("Using effect")
+    const fetchData = async () => {
+      console.log("Fetching Data")
+      const qlist = await customizeResponse();
+      console.log('qlist: ', qlist)
+      setQuestionList(qlist)
+    }
+    fetchData()
+  },[])
+
 
   function questionClickHandler(event, questionId, answerId) {
     // console.log('a.target:', event.target)
@@ -31,20 +43,26 @@ function App() {
     setQuestionList(() => newQuestions)
   }
 
-  const questions = 
-    <div>
-      {questionList.map((question) => {
-        return <Question 
-          key={question.id} 
-          id={question.id}
-          question={question.question} 
-          answers={question.answerList}
-          handleClick={questionClickHandler}
-        /> 
-      })}
-        
-
-    </div>
+  function renderQuestions() {
+    if(questionList) {
+      return (
+      <div>
+        {questionList.map((question) => {
+          return <Question 
+            key={question.id} 
+            id={question.id}
+            question={question.question} 
+            answers={question.answerList}
+            handleClick={questionClickHandler}
+          /> 
+        })}
+      </div>
+      )
+    } else {
+      return <p>getting questions</p>
+    }
+  }
+  const questions = renderQuestions()
 
   return (
     <>

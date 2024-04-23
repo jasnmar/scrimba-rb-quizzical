@@ -1,33 +1,39 @@
 import { nanoid } from 'nanoid'
 import { data } from '../data'
 import he from "he"
-
+const tmp = false
 //Turn this off for prod
 const debug = true
 
 //I want the shape of the data to be a little different than the
 //way the API returns it, so I'm reshaping it a bit.
-export function customizeResponse() {
-  const apiResponse = getQuestions()
-  console.log('apiResponse: ', apiResponse)
-  const questionList = apiResponse.results
-  console.log('questionList: ', questionList)
-  const formattedQuestions = questionList.map(question => {
-    const questionId = nanoid()
-    const answerList = fixAnswerList(question, questionId)
-    question = {
-      ...question, 
-      question: he.decode(question.question), 
-      answerList:answerList, 
-      id:questionId}
-    return question
-  })
-  return formattedQuestions
+export async function customizeResponse() {
+  console.log('data: ', data)
+  console.log("Customizing the Response")
+  try {
+    const apiResponse = await getQuestions()
+      console.log("Full apiResponse: ", apiResponse)
+      const questionList = apiResponse.results
+      const formattedQuestions = questionList.map(question => {
+        const questionId = nanoid()
+        const answerList = fixAnswerList(question, questionId)
+        question = {
+          ...question, 
+          question: he.decode(question.question), 
+          answerList:answerList, 
+          id:questionId}
+        return question
+      })
+      return formattedQuestions
+
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 //So that I don't slam the API I have some data
 //locally to work with
-function getQuestions() {
+async function getQuestions() {
   if (debug) {
     return data;
   } else {
