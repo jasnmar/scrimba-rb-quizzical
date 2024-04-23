@@ -1,6 +1,11 @@
 :root {
-    --clr-dark-blue: #4D5B9E;
+    --clr-dark-blue: #293264;
+    --clr-med-blue: #4D5B9E;
     --clr-light-blue: #D6DBF5;
+    --clr-off-white: #F5F7FB;
+    --clr-correct: #94D7A2;
+    --clr-incorrect: #F8BCBC;
+    --clr-disabled: rgba(41,50,100, 0.5)
 }
 
 * {

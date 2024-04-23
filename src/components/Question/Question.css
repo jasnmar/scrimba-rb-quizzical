@@ -10,9 +10,10 @@
     display: flex;
     gap: 20px;
 }
-.question li {
+li {
     list-style-type: none;
     border: 1px solid var(--clr-dark-blue);
+    color: var(--clr-dar-blue);
     border-radius: 16px;
     min-width: 60px;
     text-align: center;
@@ -25,5 +26,17 @@
     background-color: var(--clr-light-blue);
     border: 1px solid var(--clr-light-blue);
     box-shadow: 0px 0px 5px var(--clr-dark-blue);
-
 }
+
+.question .correct {
+    background-color: var(--clr-correct);
+}
+.question .incorrect {
+    background-color: var(--clr-incorrect);
+}
+.question .unused {
+    background-color: transparent;
+    color: var(--clr-disabled);
+    border: 1px solid var(--clr-disabled);
+}
+

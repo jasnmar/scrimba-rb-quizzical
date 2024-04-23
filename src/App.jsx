@@ -13,21 +13,16 @@ function App() {
   const [questionList, setQuestionList] = useState()
 
   useEffect(() => {
-    console.log("Using effect")
     const fetchData = async () => {
-      console.log("Fetching Data")
       const qlist = await customizeResponse();
       console.log('qlist: ', qlist)
       setQuestionList(qlist)
     }
     fetchData()
   },[])
-
+  console.log('questionList: ', questionList)
 
   function questionClickHandler(event, questionId, answerId) {
-    // console.log('a.target:', event.target)
-    // console.log('questionId: ', questionId)
-    // console.log('answerId: ', answerId)
     const newQuestions = [...questionList]
     const currentQuestion = newQuestions.find((question) => {
       return question.id === questionId
@@ -37,9 +32,6 @@ function App() {
       return answer.id === answerId
     })
     selectedAnswer.selected = true
-    // console.log('currentQuestion: ', currentQuestion)
-    // console.log('selectedAnswer: ', selectedAnswer)
-    // console.log('questionList: ', questionList)
     setQuestionList(() => newQuestions)
   }
 
@@ -63,12 +55,37 @@ function App() {
     }
   }
   const questions = renderQuestions()
-
+  function checkQuizAnswers(e) {
+    e.preventDefault()
+    console.log(e.target)
+    const questionCheck = [...questionList]
+    const correctQuestions = questionCheck.map((question) => {
+      const answers = question.answerList.map((answer) => {
+        answer = {...answer, checked: true }
+        if(answer.selected) {
+          if(answer.correct) {
+            answer = {...answer, right: true}
+          } else {
+            answer = {...answer, right: false}
+          }
+        }
+        // console.log('answer: ', answer)
+        return answer
+      })
+      question.answerList = answers
+      console.log('question: ', question)
+      return question
+    })
+    setQuestionList(questionCheck)
+  }
   return (
     <>
       <Welcome />
+      <div className='container'>
+
       {questions}
-      <button className='app--check-answers'>Check Answers</button>
+      <button onClick={checkQuizAnswers} className='app--check-answers-btn'>Check Answers</button>
+      </div>
     </>
   )
 }

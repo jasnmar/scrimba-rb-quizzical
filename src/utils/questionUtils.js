@@ -8,11 +8,9 @@ const debug = true
 //I want the shape of the data to be a little different than the
 //way the API returns it, so I'm reshaping it a bit.
 export async function customizeResponse() {
-  console.log('data: ', data)
-  console.log("Customizing the Response")
+
   try {
     const apiResponse = await getQuestions()
-      console.log("Full apiResponse: ", apiResponse)
       const questionList = apiResponse.results
       const formattedQuestions = questionList.map(question => {
         const questionId = nanoid()

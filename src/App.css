@@ -1,8 +1,16 @@
-: root {
-    
+
+.container {
+    display: flex;
+    flex-direction: column;
 }
 
-
-.app--check-answers {
-
+.app--check-answers-btn {
+    background-color: var(--clr-dark-blue);
+    margin: auto;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: var(--clr-off-white);
+    font-weight: bold;
+    margin: 40px auto;
 }
