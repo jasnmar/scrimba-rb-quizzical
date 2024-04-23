@@ -1,0 +1,29 @@
+.question {
+    padding: 10px 40px;
+}
+
+.question h1 {
+    margin: 0;
+}
+
+.question ul {
+    display: flex;
+    gap: 20px;
+}
+.question li {
+    list-style-type: none;
+    border: 1px solid var(--clr-dark-blue);
+    border-radius: 16px;
+    min-width: 60px;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: .8rem;
+    
+}
+
+.question .selected {
+    background-color: var(--clr-light-blue);
+    border: 1px solid var(--clr-light-blue);
+    box-shadow: 0px 0px 5px var(--clr-dark-blue);
+
+}

@@ -5,12 +5,13 @@ function Question(props) {
     function getAnswerList() {
         const answerArray = props.answers
         return answerArray.map(answer => {
-            return <div 
+            return <li 
                 onClick={(e) => props.handleClick(e, props.id, answer.id)} 
                 id={answer.id} 
-                key={answer.id}>
+                key={answer.id}
+                className={answer.selected ? "selected" : undefined}>
                     {answer.answerText}
-                </div>
+                </li>
         })
     }
 
@@ -18,9 +19,10 @@ function Question(props) {
     return (
         <section className="question">
             <h1>{props.question}</h1>
-            <div>
+            <ul>
                 {answerList}
-            </div>
+            </ul>
+            <hr/>
         </section>
     )
 }
