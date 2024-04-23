@@ -4,8 +4,8 @@
     --clr-light-blue: #D6DBF5;
     --clr-off-white: #F5F7FB;
     --clr-correct: #94D7A2;
-    --clr-incorrect: #F8BCBC;
-    --clr-disabled: rgba(41,50,100, 0.5)
+    --clr-incorrect: rgba(248, 188, 188, 0.5);
+    --clr-unused: rgba(41,50,100, 0.5)
 }
 
 * {

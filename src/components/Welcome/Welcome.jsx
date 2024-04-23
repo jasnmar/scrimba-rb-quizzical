@@ -1,8 +1,12 @@
 import "./Welcome.css"
 
-function Welcome() {
+function Welcome(props) {
     return (
-        <h1>Welcome</h1>
+        <main className="welcome--main">
+            <h1>Quizzical</h1>
+            <h2>Some description if needed</h2>
+            <button onClick={props.clickHandler} className="btn">Start quiz</button>
+        </main>
     )
 }
 

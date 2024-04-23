@@ -11,10 +11,9 @@ function Question(props) {
         //Not selected
         let answerClass=""
         if(answer.checked) {
-          console.log('answer: ', answer)
           //The answers have been checked
-          if(answer.right) {
-              //They got the right answer
+          if(answer.correct) {
+              //This is the correct answer
               answerClass = "correct"
           } else {
             //answer.right != true

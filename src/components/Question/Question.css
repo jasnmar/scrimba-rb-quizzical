@@ -10,6 +10,7 @@
     display: flex;
     gap: 20px;
 }
+
 li {
     list-style-type: none;
     border: 1px solid var(--clr-dark-blue);
@@ -31,12 +32,16 @@ li {
 .question .correct {
     background-color: var(--clr-correct);
 }
+
 .question .incorrect {
     background-color: var(--clr-incorrect);
-}
-.question .unused {
-    background-color: transparent;
     color: var(--clr-disabled);
     border: 1px solid var(--clr-disabled);
+}
+
+.question .unused {
+    background-color: transparent;
+    color: var(--clr-unused);
+    border: 1px solid var(--clr-unused);
 }
 

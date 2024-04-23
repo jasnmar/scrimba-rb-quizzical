@@ -7,19 +7,22 @@ import { nanoid } from 'nanoid'
 import { customizeResponse } from './utils/questionUtils'
 import he from "he"
 
-
-
 function App() {
   const [questionList, setQuestionList] = useState()
+  const [numberCorrect, setNumberCorrect] = useState(0)
+  const [gameOver, setGameOver] = useState(false)
+  const [gameStarted, setGameStarted] = useState(false)
 
   useEffect(() => {
+    if(!gameOver) {
     const fetchData = async () => {
       const qlist = await customizeResponse();
       console.log('qlist: ', qlist)
       setQuestionList(qlist)
     }
     fetchData()
-  },[])
+    }
+  },[gameOver])
   console.log('questionList: ', questionList)
 
   function questionClickHandler(event, questionId, answerId) {
@@ -35,6 +38,10 @@ function App() {
     setQuestionList(() => newQuestions)
   }
 
+  function startButtonClickHandler(e) {
+    e.preventDefault()
+    setGameStarted(true)
+  }
   function renderQuestions() {
     if(questionList) {
       return (
@@ -57,7 +64,6 @@ function App() {
   const questions = renderQuestions()
   function checkQuizAnswers(e) {
     e.preventDefault()
-    console.log(e.target)
     const questionCheck = [...questionList]
     const correctQuestions = questionCheck.map((question) => {
       const answers = question.answerList.map((answer) => {
@@ -65,27 +71,54 @@ function App() {
         if(answer.selected) {
           if(answer.correct) {
             answer = {...answer, right: true}
+            setNumberCorrect((numberCorrect)=> numberCorrect + 1)
           } else {
             answer = {...answer, right: false}
           }
         }
-        // console.log('answer: ', answer)
         return answer
       })
       question.answerList = answers
-      console.log('question: ', question)
       return question
     })
     setQuestionList(questionCheck)
+    setGameOver(true)
   }
+  function restartGame(e) {
+    e.preventDefault()
+    setGameOver(false)
+    setNumberCorrect(0)
+
+  }
+
+  const footer = renderFooter()
+  function renderFooter() {
+    return gameOver ? <div className='footer'>
+      <p className='score'>
+        You scored {numberCorrect}/5 correct answers</p>
+        <button 
+          onClick={restartGame}
+          className="btn">
+          NewGame
+        </button> 
+    </div>: 
+    <button 
+      onClick={checkQuizAnswers} 
+      className='btn'>
+        Check Answers
+    </button>
+  }
+
   return (
     <>
-      <Welcome />
-      <div className='container'>
-
-      {questions}
-      <button onClick={checkQuizAnswers} className='app--check-answers-btn'>Check Answers</button>
-      </div>
+    <div className='container'>
+      {gameStarted ? <>
+            {questions}
+            {footer}
+        </> :
+        <Welcome clickHandler={startButtonClickHandler} />
+        } 
+     </div>
     </>
   )
 }
