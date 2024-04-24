@@ -3,28 +3,30 @@ import { data } from '../data'
 import he from "he"
 const tmp = false
 //Turn this off for prod
-const debug = false
+const debug = true
 
 //I want the shape of the data to be a little different than the
 //way the API returns it, so I'm reshaping it a bit.
 export async function customizeResponse() {
-
   try {
     const apiResponse = await getQuestions()
-      const questionList = apiResponse.results
-      const formattedQuestions = questionList.map(question => {
-        const questionId = nanoid()
-        const answerList = fixAnswerList(question, questionId)
-        question = {
-          ...question, 
-          question: he.decode(question.question), 
-          answerList:answerList, 
-          id:questionId}
-        return question
-      })
+    const questionList = apiResponse.results
+    const formattedQuestions = questionList.map(question => {
+      //Assign each question an ID, so we can look it up
+      const questionId = nanoid()
+      //Customizes the answer list
+      const answerList = fixAnswerList(question, questionId)
+      question = {
+        ...question, 
+        question: he.decode(question.question), 
+        answerList:answerList, 
+        id:questionId}
+      return question
+    })
       return formattedQuestions
 
   } catch (err) {
+    //I'm kinda clueless as to what to do if it fails.
     console.error(err)
   }
 }
