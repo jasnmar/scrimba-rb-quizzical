@@ -8,6 +8,7 @@
 
 .question ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -45,3 +46,25 @@ li {
     border: 1px solid var(--clr-unused);
 }
 
+@media (max-width: 600px)
+{
+    .question li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        min-width: 34%;
+        min-height: 5vh;
+
+    }
+    .question ul {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .question h1 {
+        margin: 0;
+        text-align: center;
+    }
+}
+ 
