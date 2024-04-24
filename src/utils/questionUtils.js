@@ -1,8 +1,7 @@
 import { nanoid } from 'nanoid'
 import { data } from '../data'
 import he from "he"
-const tmp = false
-//Turn this off for prod
+//Turn this off for prod true false
 const debug = false
 
 //I want the shape of the data to be a little different than the
