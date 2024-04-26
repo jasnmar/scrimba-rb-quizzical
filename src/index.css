@@ -15,5 +15,7 @@
 body {
     color: #293264;
     font-family: 'Karla', sans-serif;
-    background-color: #F5F7FB;
+    background-image: linear-gradient(to top, #d8edea 0%, #fee6e3 100%);
+    background-repeat: no-repeat;
+    background-size: contain;
 }

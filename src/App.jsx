@@ -75,7 +75,7 @@ function App() {
       )
     } else {
       //Fail kinda gracefully
-      return <p>getting questions</p>
+      return <p>Something&apos;s not quite right </p>
     }
   }
   //Called by the button at the bottom of the quiz
@@ -95,11 +95,8 @@ function App() {
         //Right. I think this may be overcomplicated.
         if(answer.selected) {
           if(answer.correct) {
-            answer = {...answer, right: true}
             //Update the state if it was right
             setNumberCorrect((numberCorrect)=> numberCorrect + 1)
-          } else {
-            answer = {...answer, right: false}
           }
         }
         return answer
@@ -126,6 +123,7 @@ function App() {
   //a score and restart button.
   const footer = renderFooter()
   function renderFooter() {
+    if (questionList) {
     return gameOver ? <div className='footer'>
       <p className='score'>
         You scored {numberCorrect}/5 correct answers</p>
@@ -140,6 +138,15 @@ function App() {
       className='btn'>
         Check Answers
     </button>
+    } else {
+      return (
+        <button
+          onClick={restartGame}
+          className='btn'>
+            Try Again
+        </button>
+      )
+    }
   }
 
   //This is the "main" portion of the app
