@@ -1,8 +1,21 @@
-# React + Vite
+# Quizzical
+## Module 10, React Basics
+from the Scrimba.com Frontend Career Path
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### React Router
+Learning Goals
+This was the solo project at the end of the React Basics Module
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Installation: Prod:
+```
+npm install
+npm build
+npm preview
+```
+Dev:
+```
+npm install
+npm run dev
+```
+Deployment: https://quizzical-squirel.netlify.app/ 
